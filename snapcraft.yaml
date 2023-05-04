@@ -1,0 +1,70 @@
+name: tabletop-club-unofficial
+base: core22
+version: 0.1.0
+summary: An open-source multiplayer tabletop simulator
+description: |
+    Tabletop Club is an open-source multiplayer game that allows you to play your favorite tabletop games in a physics-driven 3D environment with the use of easy-to-make asset packs.
+
+    Source: https://github.com/drwhut/tabletop-club
+    Snap-Source: https://github.com/nbuechner/upscayl-snap
+
+grade: stable
+confinement: strict
+architectures:
+  - build-on: amd64
+    build-for: amd64
+
+apps:
+  tabletop-club:
+    command: TabletopClub.x86_64
+    plugs: [home, x11, desktop, removable-media, shared-memory, opengl ]
+    extensions: [ gnome ]
+    environment:
+       VK_ICD_FILENAMES: "/var/lib/snapd/lib/vulkan/icd.d/nvidia_icd.json:$SNAP/usr/share/vulkan/icd.d/radeon.x86_64.json:$SNAP/usr/share/vulkan/icd.d/intel_icd.x86_64.json"
+
+plugs:
+  shared-memory:
+    private: true
+
+parts:
+  main:
+    source: https://github.com/drwhut/tabletop-club/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/TabletopClub_v${SNAPCRAFT_PROJECT_VERSION}_Linux_64.zip
+    plugin: dump
+    source-type: zip
+    override-build: |
+      craftctl default
+    stage-packages:
+       - libgbm1
+       - libgtk-3-0
+       - libxrandr2
+       - libnss3
+       - libnotify4
+       - libxss1
+       - libxtst6
+       - xdg-utils
+       - libatspi2.0-0
+       - libuuid1
+       - libsecret-1-0
+       - libappindicator3-1
+       - desktop-file-utils
+       - libvulkan1
+       - mesa-vulkan-drivers
+lint:
+  ignore:
+    - library
+
+layout:
+  /snap/tabletop-club/Resources/assets:
+    bind: $SNAP/assets
+  /usr/share/vulkan:
+    symlink: $SNAP/usr/share/vulkan
+  /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libvulkan_intel.so:
+    symlink: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libvulkan_intel.so
+  /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libvulkan_radeon.so:
+    symlink: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libvulkan_lvp.so
+  /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libvulkan_lvp.so:
+    symlink: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libvulkan_lvp.so
+  /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libGLX_nvidia.so.0:
+    symlink: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libGLX_nvidia.so.0
+  /usr/share/libdrm:
+    bind: $SNAP/usr/share/libdrm
