@@ -17,7 +17,7 @@ architectures:
 apps:
   tabletop-club:
     command: TabletopClub.x86_64
-    plugs: [home, x11, desktop, removable-media, shared-memory, opengl, network ]
+    plugs: [home, x11, desktop, removable-media, shared-memory, opengl, network, audio-playback ]
     extensions: [ gnome ]
     environment:
        VK_ICD_FILENAMES: "/var/lib/snapd/lib/vulkan/icd.d/nvidia_icd.json:$SNAP/usr/share/vulkan/icd.d/radeon.x86_64.json:$SNAP/usr/share/vulkan/icd.d/intel_icd.x86_64.json"
