@@ -2,6 +2,6 @@
 Encoding=UTF-8
 Type=Application
 Terminal=false
-Exec=tabletop-club
+Exec=tabletop-club-unofficial.tabletop-club
 Name=Tabletop Club
 Icon=${SNAP}/meta/gui/tabletop-club.svg

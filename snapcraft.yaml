@@ -54,7 +54,7 @@ lint:
     - library
 
 layout:
-  /snap/tabletop-club/Resources/assets:
+  /snap/tabletop-club-unofficial/Resources/assets:
     bind: $SNAP/assets
   /usr/share/vulkan:
     symlink: $SNAP/usr/share/vulkan
