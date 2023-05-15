@@ -49,6 +49,13 @@ parts:
        - desktop-file-utils
        - libvulkan1
        - mesa-vulkan-drivers
+
+parts:
+  asset-one:
+    source: https://github.com/nbuechner/tabletop-club-snap/raw/main/assets/ColorfulCards.tgz
+    plugin: dump
+    source-type: tar
+
 lint:
   ignore:
     - library

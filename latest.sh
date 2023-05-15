@@ -6,6 +6,7 @@ if [[ "$VERSION" != "$LOCAL_VERSION" ]]; then
    echo "local and remove versions differ"
    echo "old version: $LOCAL_VERSION"
    echo "new version: $VERSION"
+   git pull
    sed -i "/^\([[:space:]]*version: \).*/s//\1$VERSION/" snapcraft.yaml
    git commit -a -m 'version update: $VERSION'
    git push
