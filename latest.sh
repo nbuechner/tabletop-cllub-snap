@@ -10,6 +10,7 @@ if [[ "$VERSION" != "$LOCAL_VERSION" ]]; then
    sed -i "/^\([[:space:]]*version: \).*/s//\1$VERSION/" snapcraft.yaml
    git commit -a -m 'version update: $VERSION'
    git push
+   snapcraft
    snapcraft upload --release=stable tabletop-club-unofficial_${VERSION}_amd64.snap
 else
    echo "no update available. current version is $VERSION"
