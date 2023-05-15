@@ -31,8 +31,6 @@ parts:
     source: https://github.com/drwhut/tabletop-club/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/TabletopClub_v${SNAPCRAFT_PROJECT_VERSION}_Linux_64.zip
     plugin: dump
     source-type: zip
-    override-build: |
-      craftctl default
     stage-packages:
        - libgbm1
        - libgtk-3-0
@@ -50,11 +48,17 @@ parts:
        - libvulkan1
        - mesa-vulkan-drivers
 
-parts:
   asset-one:
-    source: https://github.com/nbuechner/tabletop-club-snap/raw/main/assets/ColorfulCards.tgz
+    after: [ main ]
+    source: .
     plugin: dump
-    source-type: tar
+    source-type: local
+    override-build: |
+       mkdir -p assets
+       cd assets
+       tar xf /root/project/snap/local/assets/ColorfulCards.tgz
+       cd ..
+       craftctl default
 
 lint:
   ignore:
