@@ -1,6 +1,6 @@
 name: tabletop-club-unofficial
 base: core22
-version: 0.1.1
+version: 0.1.2
 summary: An open-source multiplayer tabletop simulator
 description: |
     Tabletop Club is an open-source multiplayer game that allows you to play your favorite tabletop games in a physics-driven 3D environment with the use of easy-to-make asset packs.
